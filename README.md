@@ -44,11 +44,9 @@ I used 7 different augmentation techniques to increase the number of images that
 
 3.	Left/right camera images – I used the left/right camera images from the car which immediately triples the training data size. After closely examining the left/right images and looking for common features to the center images, I estimated that the left right images where offset horizontally from the center camera by approximately 60 pixels. Based on this information, I used a steering angle correction of +/- 0.25 units or +/- 6.25 degrees for these left/right images. 
  - I also tried to implement a speed based steering angle correction since my intuition was that at higher speeds the steering correction should be smaller or more gradual. I was surprised to find that I could not get this to work as well as having a constant steering angle correction. I think that with further adjustment and better knowledge of the left/right camera image location that this method would work.
- - Speed based steering adjustment was implemented by defining a response time of 2 seconds for the car to return to center. The following diagram then shows how the steering angle correction was calculated:
+ - Speed based steering adjustment was implemented by defining a response time of 2 seconds for the car to return to center. As the speed of the car increases, the steering angle needed to return to center in 2 seconds decreases. The following diagram then shows how the steering angle correction was calculated:
  
  <img src="images/SpeedAdjust.png" width="300">
-
-As the speed of the car increases, the steering angle needed to return to center in 2 seconds decreases. 
 
 4.	Horizontal/Vertical shifting – I applied horizontal and vertical shifting to the images. My max/min horizontal and vertical shifts were 40 pixels in each direction. I tuned this value during model training. Considering that I estimated the left/right images to be offset by 60 pixels, I applied a slightly smaller steering angle correction for the horizontal shifts. The vertical shifts had no steering angle correction. I also attempted speed based correction for the horizontal shifts. 
 
