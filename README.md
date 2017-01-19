@@ -13,8 +13,8 @@ I trained these models using a modified version of Udacity’s CarND AWS AMI wit
 The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24809 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
 
 --------------------------------------------------------------------------------------------------------------
-               Left Camera                      Center Camera                        Right Camera                
------------------------------------ ------------------------------------ -------------------------------------
+               Left Camera                          Center Camera                        Right Camera                
+------------------------------------- ------------------------------------ -----------------------------------
 ![alt tag](images/LeftRightCenter.png)
 
 The steering angles provided in the driving log have been plotted below. 
