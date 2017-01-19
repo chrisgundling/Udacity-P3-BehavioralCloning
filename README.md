@@ -28,7 +28,7 @@ I followed the discussions closely on Slack regarding collecting training data. 
 ## Exponential Smoothing
 I addressed this issue by applying an exponential smoothing to the steering training data in the driving_log.csv file. Exponential smoothing (Brown’s Method) helped to produce smoother steering transitions, but also truncated and shifted the data. I applied a scaling to recover some of the amplitude of the steering and shifted the data by several time steps so that the steering would not be delayed. The result of the exponential smoothing can be seen below for the first ~1200 training examples.
 
- <img src="images/Smoothing.png" width="600">
+ <img src="images/Smoothing.png" width="800">
 
 ## Normalization
 Similar to Project 2, I normalized all of the image pixel values using the equation (x-128)/128. This normalizes the values to be between -1 and 1. I did this for the training data, validation data and implemented it in the drive.py script for testing the model.
