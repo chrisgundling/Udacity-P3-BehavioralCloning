@@ -63,12 +63,9 @@ The implemented data generator selected randomly between the center/left/right i
 - ang: Steering Angle Label for Image
 - cam: Camera Selection (left,center,right)
 - aug: 1 is no augmentation, 2 is yes augmentation
-- opt: If Data Augmentation Selected Option is: 
- 1. Flip, Jitter, Blur, Brightness
- 2. Shift Image
- 3. Rotational Viewpoint Transform
+- opt: If Data Augmentation Selected Option is: 1. Flip, Jitter, Blur, Brightness, 2. Shift Image, 3. Rotational Viewpoint Transform
  
- 
+![alt tag](images/Augmentation.png)
 
 # Model Setup and Hyper Parameters
 My goal was to train each of my two models 1. NVIDIA type and 2. VGG type with as many similar hyper-parameters as possible. I used the following parameters for training of both models.
