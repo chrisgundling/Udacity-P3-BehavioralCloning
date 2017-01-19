@@ -12,7 +12,8 @@ I trained these models using a modified version of Udacity’s CarND AWS AMI wit
 # Data Exploration
 The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24809 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
 
-| Left Camera                                        |Center Camera                                | Right Camera |
+| Left Camera | Center Camera | Right Camera |
+| :-------------------------------------: | :-------------------------------------------:| :----------------------------------------:|
 ![alt tag](images/LeftRightCenter.png)
 
 The steering angles provided in the driving log have been plotted below. 
@@ -65,7 +66,7 @@ Batch Size
 
 # Model Architecture
 The model architectures for each of the two models can be seen below. As mentioned in the introduction, my main tuning parameter with these models the dropout. For the NVIDIA model it was somewhat surprising to find that the model performed best on both Track 1 and 2 with no dropout. The model size is relatively small and with all of the applied image augmentations any dropout caused the car not to steer hard enough in the corners. For the VGG type model it was a different story, the model is much larger and relies on dropout. Even with dropout applied I could not get this model to drive very smoothly (most likely still over-fitting the data).
-![alt tag](images/NVIDIA.png=250x)
+![alt tag](images/NVIDIA.png =250x)
 
 ## Structure and Parameters
 | Layer | Size | Memory (Forward Pass) | # Parameters (Not Counting Bias) |
