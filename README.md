@@ -45,7 +45,8 @@ I used 7 different augmentation techniques to increase the number of images that
 3.	Left/right camera images – I used the left/right camera images from the car which immediately triples the training data size. After closely examining the left/right images and looking for common features to the center images, I estimated that the left right images where offset horizontally from the center camera by approximately 60 pixels. Based on this information, I used a steering angle correction of +/- 0.25 units or +/- 6.25 degrees for these left/right images. 
  - I also tried to implement a speed based steering angle correction since my intuition was that at higher speeds the steering correction should be smaller or more gradual. I was surprised to find that I could not get this to work as well as having a constant steering angle correction. I think that with further adjustment and better knowledge of the left/right camera image location that this method would work.
  - Speed based steering adjustment was implemented by defining a response time of 2 seconds for the car to return to center. The following diagram then shows how the steering angle correction was calculated:
- <img src="images/SpeedAdjust.png" width="100">
+ 
+ <img src="images/SpeedAdjust.png" width="300">
 
 As the speed of the car increases, the steering angle needed to return to center in 2 seconds decreases. 
 
@@ -68,6 +69,7 @@ Batch Size
 
 # Model Architecture
 The model architectures for each of the two models can be seen below. As mentioned in the introduction, my main tuning parameter with these models the dropout. For the NVIDIA model it was somewhat surprising to find that the model performed best on both Track 1 and 2 with no dropout. The model size is relatively small and with all of the applied image augmentations any dropout caused the car not to steer hard enough in the corners. For the VGG type model it was a different story, the model is much larger and relies on dropout. Even with dropout applied I could not get this model to drive very smoothly (most likely still over-fitting the data).
+
 <img src="images/NVIDIA.png" width="250">
 
 ## Structure and Parameters
