@@ -106,11 +106,24 @@ model.compile(optimizer=Adam(lr=1e-4), loss = 'mse')
 ```
 
 # Model Architecture
-The model architectures for each of the two models can be seen below. As mentioned in the introduction, my main tuning parameter with these models the dropout. For the NVIDIA model it was somewhat surprising to find that the model performed best on both Track 1 and 2 with no dropout. The model size is relatively small and with all of the applied image augmentations any dropout caused the car not to steer hard enough in the corners. For the VGG type model it was a different story, the model is much larger and relies on dropout. Even with dropout applied I could not get this model to drive very smoothly (most likely still over-fitting the data).
+The model architectures for each of the two models can be seen below. As mentioned in the introduction, my main tuning parameter with these models was the dropout. For the NVIDIA model it was somewhat surprising to find that the model performed best on both Track 1 and 2 with no dropout. The model size is relatively small and with all of the applied image augmentations any dropout caused the car not to steer hard enough in the corners. For the VGG type model it was a different story, the model is much larger and relies on dropout. Even with dropout applied I could not get this model to drive very smoothly (most likely still over-fitting the data).
 
-<img src="images/NVIDIA.png" width="250">
+## NVIDIA Type Model Structure and Parameters
+| Layer | Size | Memory (Forward Pass) | # Parameters (Not Counting Bias) |
+| ---- | :------------------:| --------:| ---------------:|
+| input | 66 X 200 X 3 | 0.040 MB | 0 |
+| conv1 | 31 X 98 X 24 | 0.073 MB | 1800 | 
+| conv2 | 14 X 47 X 36 | 0.024 MB | 21600 | 
+| conv3 | 5 X 22 X 48 | 0.005 MB | 43200 | 
+| conv4 | 3 X 20 X 64 | 0.004 MB | 27648 | 
+| conv5 | 1 X 18 X 64 | 0.001 MB | 36864 | 
+| FC1 | 1 X 1 X 100 | 0.0001 MB | 115200 | 
+| FC2 | 1 X 1 X 50 | 0.0001 MB | 5000 | 
+| FC3 | 1 X 1 X 10 | 0.0001 MB | 500 | 
 
-## Structure and Parameters
+Based on the notes from Stanford's CS231n, this gives 0.6 MB for each image on forward pass and 1.2 MB on the backward pass. Using a batch size of 64, the max memory usage will be 75 MB during the backward pass.
+
+## VGG Type Model Structure and Parameters
 | Layer | Size | Memory (Forward Pass) | # Parameters (Not Counting Bias) |
 | ---- | :------------------:| --------:| ---------------:|
 | input | 128 X 128 X 3 | 0.05 MB | 0 |
@@ -122,9 +135,7 @@ The model architectures for each of the two models can be seen below. As mention
 | pool3 | 16 X 16 X 128 | 0.20 MB | 0 | 
 | FC1 | 1 X 1 X 1024 | 0.001 MB | 33554432 | 
 
-Based on the notes from Stanford's CS231n, this gives 8 MB (~2MB * 4 bytes) for each image on forward pass and 16 MB on the backward pass.  Using a batch size of 32, the max memory usage will be 512 MB during the backward pass.
-
-Over 99% of the parameters in this model are in the FC1 layer. Comparing the structure and parameters to NVIDIA’s model, at nearly 34 million parameters, this model has significantly more parameters than NVIDIA’s. Even with the dropout and various image augmentation techniques this model still overfits.
+This gives 8 MB (~2MB * 4 bytes) for each image on forward pass and 16 MB on the backward pass.  Using a batch size of 64, the max memory usage will be 1.024 GB during the backward pass. Over 99% of the parameters in this model are in the FC1 layer. Comparing the structure and parameters to NVIDIA’s model, at nearly 34 million parameters, this model has significantly more parameters than NVIDIA’s.
 
 # Results
 The following videos show side by side comparisons of the two models for both Track 1 and 2. Clearly the NVIDIA model is able to steer more smoothly and confidently on both tracks. 
