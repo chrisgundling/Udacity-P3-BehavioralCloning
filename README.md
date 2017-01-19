@@ -65,7 +65,7 @@ The implemented data generator selected randomly between the center/left/right i
 - aug: 1 is no augmentation, 2 is yes augmentation
 - opt: If Data Augmentation Selected Option is: 1. Flip, Jitter, Blur, Brightness, 2. Shift Image, 3. Rotational Viewpoint Transform
  
-![alt tag](images/Augmentation.png)
+![alt tag](images/Augmentations.png)
 
 # Model Setup and Hyper Parameters
 My goal was to train each of my two models 1. NVIDIA type and 2. VGG type with as many similar hyper-parameters as possible. I used the following parameters for training of both models.
