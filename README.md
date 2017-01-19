@@ -62,11 +62,12 @@ The data generator that I implemented selected randomly between the center/left/
 
 # Model Setup and Hyper Parameters
 My goal was to train each of my two models 1. NVIDIA type and 2. VGG type with as many similar hyper-parameters as possible. I used the following parameters for training of both models.
-Max number of Epochs – 10 (5 or 6 Epochs of training typically gave best model)
-Samples Per Epoch – 21632
-Batch Size - 64
-Optimizer - Adam with learning rate 1e-4
-Activations - Relu for VGG style and Elu for NVIDIA model
+
+- Max number of Epochs – 10 (5 or 6 Epochs of training typically gave best model)
+- Samples Per Epoch – 21632
+- Batch Size - 64
+- Optimizer - Adam with learning rate 1e-4
+- Activations - Relu for VGG style and Elu for NVIDIA model
 
 The NVIDIA model implemented in Keras is shown below:
 ```
