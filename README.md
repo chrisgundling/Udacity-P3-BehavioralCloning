@@ -10,7 +10,7 @@ I experimented with different data-preprocessing techniques, 7 different augment
 I trained these models using a modified version of Udacity’s CarND AWS AMI with a g2.2xlarge GPU and tested the models on my Macbook Pro laptop. The simulator was set to the 'Fastest' setting with screen resolution of 640 X 480. I adjusted the drive.py script to implement the same pre-processing methods that I used for the training data (cropping, re-sizing, normalizing images).
 
 # Data Exploration
-The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24809 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
+The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24109 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
 
 --------------------------------------------------------------------------------------------------------------
                Left Camera                          Center Camera                        Right Camera                
