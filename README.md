@@ -57,13 +57,51 @@ I used 7 different augmentation techniques to increase the number of images that
 7.	Image Rotations – Different from perspective transforms, I implemented small rotations to the images to simulate jittering of the camera. Once again, not sure how useful this was for the simulator, but would be useful for a real camera on a self-driving car.
 
 # Data Generator
-The data generator that I used selected randomly between the center/left/right images and also selected at random which augmentation techniques to apply. I found that only providing augmented training data did not work as well as training the model with a combination of the original center images and the augmented images. I also implemented a bias towards first training the model with larger turns and then allowing the data with smaller turns to slowly leak into the training. This idea is directly credited to a few of the other students who posted this idea on Slack. If the model is initially trained with low steering angles it will be biased towards straighter driving and I found that it did not perform well in the corners. The generator also shuffled the training data, whereas the validation data was read in in sequence.
+The data generator that I implemented selected randomly between the center/left/right images and also selected at random which augmentation techniques to apply. I found that only providing augmented training data did not work as well as training the model with a combination of the non-augmented original images and the augmented images. I also implemented a bias towards first training the model with larger turns and then allowing the data with smaller turns to slowly leak into the training. This idea is directly credited to a few of the other students who posted this idea on Slack. If the model is initially trained with low steering angles it will be biased towards straighter driving and I found that it did not perform well in the corners. The generator also shuffled the training data, whereas the validation data was read in in sequence.
 
 # Model Setup and Hyper Parameters
 My goal was to train each of my two models 1. NVIDIA type and 2. VGG type with as many similar hyper-parameters as possible. I used the following parameters for training of both models.
 Max number of Epochs – 10 (5 or 6 Epochs of training typically gave best model)
-Samples Per Epoch – 
-Batch Size
+Samples Per Epoch – 21632
+Batch Size - 64
+Optimizer - Adam with learning rate 1e-4
+Activations - Relu for VGG style and Elu for NVIDIA model
+
+The NVIDIA model implemented in Keras is shown below:
+```
+# Layer 1
+x = Convolution2D(24, 5, 5, activation='elu', subsample=(2, 2), border_mode='valid', init='he_normal')(img_input)
+
+# Layer 2
+x = Convolution2D(36, 5, 5, activation='elu', subsample=(2, 2), border_mode='valid', init='he_normal')(x)
+
+# Layer 3
+x = Convolution2D(48, 5, 5, activation='elu', subsample=(2, 2), border_mode='valid', init='he_normal')(x)
+
+# Layer 4
+x = Convolution2D(64, 3, 3, activation='elu', subsample=(1, 1), border_mode='valid', init='he_normal')(x)
+
+# Layer 5
+x = Convolution2D(64, 3, 3, activation='elu', subsample=(1, 1), border_mode='valid', init='he_normal')(x)
+
+# Flatten
+y = Flatten()(x)
+
+# FC 1
+y = Dense(100, activation='elu', init='he_normal')(y)
+
+# FC 2
+y = Dense(50, activation='elu', init='he_normal')(y)
+
+# FC 3
+y = Dense(10, activation='elu', init='he_normal')(y)
+
+# Output Layer
+y = Dense(1, init='he_normal')(y)
+
+model = Model(input=img_input, output=y)
+model.compile(optimizer=Adam(lr=1e-4), loss = 'mse')
+```
 
 # Model Architecture
 The model architectures for each of the two models can be seen below. As mentioned in the introduction, my main tuning parameter with these models the dropout. For the NVIDIA model it was somewhat surprising to find that the model performed best on both Track 1 and 2 with no dropout. The model size is relatively small and with all of the applied image augmentations any dropout caused the car not to steer hard enough in the corners. For the VGG type model it was a different story, the model is much larger and relies on dropout. Even with dropout applied I could not get this model to drive very smoothly (most likely still over-fitting the data).
