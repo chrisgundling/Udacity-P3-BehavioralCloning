@@ -58,7 +58,17 @@ I used 7 different augmentation techniques to increase the number of images that
 7.	Image Rotations – Different from perspective transforms, I implemented small rotations to the images to simulate jittering of the camera. Once again, not sure how useful this was for the simulator, but would be useful for a real camera on a self-driving car.
 
 # Data Generator
-The data generator that I implemented selected randomly between the center/left/right images and also selected at random which augmentation techniques to apply. I found that only providing augmented training data did not work as well as training the model with a combination of the non-augmented original images and the augmented images. I also implemented a bias towards first training the model with larger turns and then allowing the data with smaller turns to slowly leak into the training. This idea is directly credited to a few of the other students who posted this idea on Slack. If the model is initially trained with low steering angles it will be biased towards straighter driving and I found that it did not perform well in the corners. The generator also shuffled the training data, whereas the validation data was read in in sequence.
+The implemented data generator selected randomly between the center/left/right images and also selected at random which augmentation techniques to apply. I found that only providing augmented training data did not work as well as training the model with a combination of the non-augmented original images and the augmented images. I also implemented a bias towards first training the model with larger turns and then allowing the data with smaller turns to slowly leak into the training. This idea is directly credited to a few of the other students who posted this idea on Slack. If the model is initially trained with low steering angles it will be biased towards straighter driving and I found that it did not perform well in the corners. The generator also shuffled the training data, whereas the validation data was read in in sequence. Using the data generator, an figure is shown below that gives the images and augmentation choices that the data generator produces for the first 30 training examples during a training run. The image titles are given as follows:
+
+- ang: Steering Angle Label for Image
+- cam: Camera Selection (left,center,right)
+- aug: 1 is no augmentation, 2 is yes augmentation
+- opt: If Data Augmentation Selected Option is: 
+ 1. Flip, Jitter, Blur, Brightness
+ 2. Shift Image
+ 3. Rotational Viewpoint Transform
+ 
+ 
 
 # Model Setup and Hyper Parameters
 My goal was to train each of my two models 1. NVIDIA type and 2. VGG type with as many similar hyper-parameters as possible. I used the following parameters for training of both models.
