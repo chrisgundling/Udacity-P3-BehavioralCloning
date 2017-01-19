@@ -10,8 +10,12 @@ I experimented with different data-preprocessing techniques, 7 different augment
 I trained these models using a modified version of Udacity’s CarND AWS AMI with a g2.2xlarge GPU and tested the models on my Macbook Pro laptop. The simulator was set to the 'Fastest' setting with screen resolution of 640 X 480. I adjusted the drive.py script to implement the same pre-processing methods that I used for the training data (cropping, re-sizing, normalizing images).
 
 # Data Exploration
-The data provided by Udacity consisted of 8036 center, left and right images for a total data size of 24809 examples. These images were of 160 Height by 320 Width. The steering angles provided in the driving log have been plotted below. 
+The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24809 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
+                                            ![alt tag](images/center.jpg)
+
+The steering angles provided in the driving log have been plotted below. 
 ![alt tag](images/UdacitySteering.png)
+
 The steering angles in the driving_log.csv file came pre-scaled by a factor of 1/25 so that they are between -1 and 1 (The max/min steering angle produced by the simulator is +/- 25 degrees). I knew that I would need an evaluation metric for the model training, so I split out 480 center camera images and their corresponding steering angles to use for the validation set. This is a smaller validation set (validation set size approximately 5% of the training set size) than I would typically use, but I didn’t want to give up too much of the training data. I could have implemented k-fold cross validation to develop a better validation error metric, but I found that the single validation set corresponded fairly well with actual driving capability. I did not use a dedicated “test set” to calculate the RMSE, but I instead considered the performance on Track 2 to be my test set. I held off on testing on Track 2 until I found a model that I though performed very well on Track 1.
 
 # Data Pre-Processing
