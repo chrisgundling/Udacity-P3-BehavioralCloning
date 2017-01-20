@@ -11,7 +11,11 @@ I trained these models using a modified version of Udacity’s CarND AWS AMI wit
 ```
 python model.py --dataset data/ --model cnn --nb-epoch 10 --resized-image-height 66 --resized-image-width 200
 ```
-and tested in the simulator using the command:
+Once the model is trained, copy the trained model file to model.h5 and run the following script to produce the .json file:
+```
+python print_json.py
+```
+Finally, test it in the simulator using the command:
 ```
 python drive.py model.json
 ```
