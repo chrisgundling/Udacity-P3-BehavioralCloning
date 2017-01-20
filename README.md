@@ -157,3 +157,13 @@ This gives 8 MB (~2MB * 4 bytes) for each image on forward pass and 16 MB on the
 
 # Results
 The following videos show side by side comparisons of the two models for both Track 1 and 2. Clearly the NVIDIA model is able to steer more smoothly and confidently on both tracks. 
+
+## Driving on Track 1 with 0.2 Throttle Value
+
+
+## Driving on Track 2 with 0.3 Throttle Value
+
+# Conclusion
+Since I first saw the Udacity Nanodegree projects this was the one I was most looking forward to. With the difficulties associated with collecting high quality and quantity real world data on the road, being able to train these models in a simulator with seemingly infinite data could provide a significant breakthrough in autonomous driving. As seen in this project, even with a relatively small amount of data and fairly simply CNN model, the vehicle was able to steer successfully through both courses.
+
+I look forward to continuing with with this work and have been working on implemententing an RNN/LSTM approach. I would also encourage Udacity to open source their simulator so that interested students can add things like traffic, weather and more track options.
