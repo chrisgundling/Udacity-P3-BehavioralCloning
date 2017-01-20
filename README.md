@@ -7,7 +7,14 @@ My general approach for this project was to use the provided training data from 
 I experimented with various data-preprocessing techniques, 7 different augmentation methods and varied the dropout of each of the two models that I tested. In the end I found NVIDIA’s architecture to work significantly better and require less tuning. My final NVIDIA model did not use dropout and was able to drive on both Track 1 and 2 with 0.2 and 0.3 throttle values respectively. The larger VGG type model could have been further improved, but it took significantly longer to train and required more hyper-parameter tuning. I have included both models for the reviewer to test, but the best results were using the NVIDIA model with throttle value of 0.2 on Track 1 and 0.3 on Track 2 to get up the steepest hills.
 
 # Hardware/Testing Setup
-I trained these models using a modified version of Udacity’s CarND AWS AMI with a g2.2xlarge GPU and tested the models on my Macbook Pro laptop with CPU. The simulator was set to the 'Fastest' setting with screen resolution of 640 X 480. I adjusted the drive.py script to implement the same pre-processing methods that I used for the training data (cropping, re-sizing, normalizing images).
+I trained these models using a modified version of Udacity’s CarND AWS AMI with a g2.2xlarge GPU and tested the models on my Macbook Pro laptop with CPU. The simulator was set to the 'Fastest' setting with screen resolution of 640 X 480. I adjusted the drive.py script to implement the same pre-processing methods that I used for the training data (cropping, re-sizing, normalizing images). The model can be trained using the following command for GPU or CPU:
+```
+python model.py --dataset data/ --model cnn --nb-epoch 10 --resized-image-height 66 --resized-image-width 200
+```
+and tested in the simulator using the command:
+```
+python drive.py model.json
+```
 
 # Data Exploration
 The data provided by Udacity consisted of 8036 center, left and right .jpg images for a total data size of 24109 examples. These images were of 160 Height by 320 Width. An example of the center image taken from the car is shown below.
