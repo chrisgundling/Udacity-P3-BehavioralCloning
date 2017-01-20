@@ -95,38 +95,38 @@ def build_cnn(image_size=None,weights_path=None):
     return model
     
     
-def build_cnn(image_size=None,weights_path=None):
-    image_size = image_size or (128, 128)
-    if K.image_dim_ordering() == 'th':
-        input_shape = (3,) + image_size
-    else:
-        input_shape = image_size + (3, )
+#def build_cnn(image_size=None,weights_path=None):
+#    image_size = image_size or (128, 128)
+#    if K.image_dim_ordering() == 'th':
+#        input_shape = (3,) + image_size
+#    else:
+#        input_shape = image_size + (3, )
+#
+#    img_input = Input(input_shape)
+#
+#    x = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(img_input)
+#    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
+#    #x = Dropout(0.10)(x)
+#
+#    x = Convolution2D(64, 3, 3, activation='relu', border_mode='same')(x)
+#    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
+#    #x = Dropout(0.10)(x)
 
-    img_input = Input(input_shape)
+#    x = Convolution2D(128, 3, 3, activation='relu', border_mode='same')(x)
+#    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
+#    x = Dropout(0.25)(x)
+#
+#    y = Flatten()(x)
+#    y = Dense(512, activation='relu')(y)
+#    y = Dropout(0.25)(y)
+#    y = Dense(1)(y)
 
-    x = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(img_input)
-    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
-    #x = Dropout(0.10)(x)
+#    model = Model(input=img_input, output=y)
+#    model.compile(optimizer=Adam(lr=1e-4), loss = 'mse')
 
-    x = Convolution2D(64, 3, 3, activation='relu', border_mode='same')(x)
-    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
-    #x = Dropout(0.10)(x)
-
-    x = Convolution2D(128, 3, 3, activation='relu', border_mode='same')(x)
-    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
-    x = Dropout(0.25)(x)
-
-    y = Flatten()(x)
-    y = Dense(1024, activation='relu')(y)
-    y = Dropout(0.25)(y)
-    y = Dense(1)(y)
-
-    model = Model(input=img_input, output=y)
-    model.compile(optimizer=Adam(lr=1e-4), loss = 'mse')
-
-    if weights_path:
-        model.load_weights(weights_path)
-    return model
+#    if weights_path:
+#        model.load_weights(weights_path)
+#    return model
 
 
 ##########################################################################################
