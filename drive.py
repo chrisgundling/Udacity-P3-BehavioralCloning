@@ -1,3 +1,11 @@
+# ----------------------------------------------------------------------------------
+# Project 3 - Behavioral Cloning - drive.py - Chris Gundling
+# ----------------------------------------------------------------------------------
+'''
+This script when run will drive the vehicle autonomously in the simulator
+using the trained model.
+'''
+
 import argparse
 import base64
 import json
