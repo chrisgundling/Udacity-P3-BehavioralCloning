@@ -41,15 +41,11 @@ def telemetry(sid, data):
     image = Image.open(BytesIO(base64.b64decode(imgString)))
     
     image = np.asarray(image)
-    # Change image size
-    #w, h = image.size
+    # Crop/Change image size
     crop_image = image[40:140,:,:]
-    #crop_image = image.crop((0, 40, w, h-20))
     image_size = (66, 200)
     image = imresize(image, size=image_size)
-    #imsave('resized.jpg', image)
 
-    #image_array = np.asarray(image)
     transformed_image_array = image[None, :, :, :]
     transformed_image_array = (transformed_image_array.astype(np.float32) - 128.) / 128.
 
