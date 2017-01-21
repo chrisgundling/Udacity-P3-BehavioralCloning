@@ -207,7 +207,7 @@ def image_shift(img):
     shift_y = 40*np.random.uniform()-40/2
     M = np.float32([[1,0,shift_x],[0,1,shift_y]])
     img = cv2.warpAffine(img, M, (img.shape[1], img.shape[0]))
-    ang_adj = shift_x/trans_range*2*.2
+    ang_adj = shift_x/trans_range*2*0.2
     return img, ang_adj
 
 
@@ -217,11 +217,6 @@ def image_blur(img):
     if kernel_size % 2 != 1:
         kernel_size += 1
     return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
-
-
-def image_HLS(img):
-    # HLS transform
-    return cv2.cvtColor(img, cv2.COLOR_RGB2HLS)
 
 
 def image_HSV(img):
