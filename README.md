@@ -156,7 +156,7 @@ Based on the notes from Stanford's CS231n, this gives 0.6 MB for each image on f
 This gives 1.2 MB (~0.3MB * 4 bytes) for each image on forward pass and 2.4 MB on the backward pass. Using a batch size of 64, the max memory usage will be 150 GB during the backward pass. Comparing the structure and parameters to NVIDIA’s model, at nearly 4.3 million parameters, this model has significantly more parameters than NVIDIA’s.
 
 # Results
-The following videos show side by side comparisons of the two models for both Track 1 and 2. While the VGG model appears to drive slightly smoother on Track 1, the NVIDIA model generalized better to Track 2. This supports the hypothesis that the VGG style model overfit to Track 1.
+The following videos show side by side comparisons of the two models for both Track 1 and 2. While the VGG model appears to drive slightly smoother on Track 1, the NVIDIA model generalized better to Track 2. I was having trouble with overfitting using the VGG model and the results for the two tracks appear to support this finding.
 
 ## Driving on Track 1 with 0.2 Throttle Value
 
@@ -173,4 +173,4 @@ Link to video: https://youtu.be/3O8e9H-RP5k
 # Conclusion
 Since I first saw the Udacity Nanodegree projects this was the one I was most looking forward to. With the difficulties associated with collecting high quality and quantity real world data on the road, being able to train these models in a simulator with seemingly infinite data could provide a significant breakthrough in autonomous driving. As seen in this project, even with a relatively small amount of data and fairly simply CNN model, the vehicle was able to steer successfully through both courses.
 
-I look forward to continuing with with this work and have been working on implemententing an RNN/LSTM approach. I would also encourage Udacity to open source their simulator so that interested students can add things like traffic, weather and more track options.
+I look forward to continuing with with this work and have been working on implemententing an RNN/LSTM approach. I would also be curious to use combinations of real world and simulator data to train these model's.
