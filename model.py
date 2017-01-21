@@ -203,11 +203,11 @@ def image_rotate(img):
 def image_shift(img):
     # Shift image and transform steering angle
     trans_range = 80
-    shift_x = trans_range*np.random.uniform()-trans_range/2 # random.randint(-40, 40)
-    shift_y = 40*np.random.uniform()-40/2 #random.randint(-20, 20)
+    shift_x = trans_range*np.random.uniform()-trans_range/2
+    shift_y = 40*np.random.uniform()-40/2
     M = np.float32([[1,0,shift_x],[0,1,shift_y]])
     img = cv2.warpAffine(img, M, (img.shape[1], img.shape[0]))
-    ang_adj = shift_x/trans_range*2*.2 #shift_x / 200.
+    ang_adj = shift_x/trans_range*2*.2
     return img, ang_adj
 
 
@@ -234,7 +234,7 @@ def image_HSV(img):
 
 def image_viewpoint_transform(im, isdeg=True):
     # Viewpoint transform for recovery
-    theta = random.randint(-80,80)#random.choice((-60,60))
+    theta = random.randint(-80,80)
     if isdeg:
         theta = np.deg2rad(theta)
 
@@ -397,7 +397,7 @@ def data_generator(steering_log, image_log, image_folder, gen_type='train',
     # -----------------------------------------------------------------------------
     i = start
     if gen_type == 'train':
-        thresh = 0.25 #np.random.uniform()
+        thresh = 0.25
     else:
         thresh = 0
     print(thresh)
@@ -466,7 +466,7 @@ def data_generator(steering_log, image_log, image_folder, gen_type='train',
                 #    fig.set_size_inches(30, 15)
                 #    plt.show()
                 #    plt.savefig('images.png')
-       
+                
                 # Pass images and steerings to yield
                 x_buffer.append(images)
                 y_buffer.append(angle)
@@ -559,7 +559,7 @@ def main():
                             shuffle=True,
                             preprocess_input=input_processor,
                             preprocess_output=output_processor)
- 
+        
         # Use data_sim.py to generate validation data
         # -----------------------------------------------------------------------------
         val_generator = data_generator(steering_log=steering_log,
@@ -643,4 +643,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
