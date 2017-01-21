@@ -106,16 +106,14 @@ def build_cnn(image_size=None,weights_path=None):
 #
 #    x = Convolution2D(32, 3, 3, activation='relu', border_mode='same')(img_input)
 #    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
-#    #x = Dropout(0.10)(x)
-#
+
 #    x = Convolution2D(64, 3, 3, activation='relu', border_mode='same')(x)
 #    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
-#    #x = Dropout(0.10)(x)
 
 #    x = Convolution2D(128, 3, 3, activation='relu', border_mode='same')(x)
 #    x = MaxPooling2D((2, 2), strides=(2, 2))(x)
 #    x = Dropout(0.25)(x)
-#
+
 #    y = Flatten()(x)
 #    y = Dense(512, activation='relu')(y)
 #    y = Dropout(0.25)(y)
